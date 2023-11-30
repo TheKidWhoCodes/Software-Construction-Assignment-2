@@ -15,26 +15,24 @@ public class SensorDataProcessor {
 
     // calculates average of sensor data
     private double average(double[] array) {
-        int i = 0;
-        double val = 0;
-        for (i = 0; i < array.length; i++) {
-            val += array[i];
+        double sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
         }
-        return val / array.length;
+        return sum / array.length;
     }
 
     // calculate data
     public void calculate(double d) {
-        int i, j, k = 0;
         double[][][] data2 = new double[data.length][data[0].length][data[0][0].length];
-        BufferedWriter out;
+        BufferedWriter outputToFile;
 
         // Write racing stats data into a file
         try {
-            out = new BufferedWriter(new FileWriter("RacingStatsData.txt"));
-            for (i = 0; i < data.length; i++) {
-                for (j = 0; j < data[0].length; j++) {
-                    for (k = 0; k < data[0][0].length; k++) {
+            outputToFile = new BufferedWriter(new FileWriter("RacingStatsData.txt"));
+            for (int i = 0; i < data.length; i++) {
+                for (int j = 0; j < data[0].length; j++) {
+                    for (int k = 0; k < data[0][0].length; k++) {
                         data2[i][j][k] = data[i][j][k] / d - Math.pow(limit[i][j], 2.0);
                         if (average(data2[i][j]) > 10 && average(data2[i][j]) < 50)
                             break;
@@ -48,9 +46,9 @@ public class SensorDataProcessor {
                     }
                 }
             }
-            for (i = 0; i < data2.length; i++) {
-                for (j = 0; j < data2[0].length; j++) {
-                    out.write(data2[i][j] + "\t");
+            for (int i = 0; i < data2.length; i++) {
+                for (int j = 0; j < data2[0].length; j++) {
+                    outputToFile.write(data2[i][j] + "\t");
                 }
             }
             out.close();
