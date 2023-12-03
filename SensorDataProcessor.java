@@ -22,14 +22,15 @@ public class SensorDataProcessor {
         return sum / array.length;
     }
 
-    // calculate data
-    public void calculate(double d) {
+    // Change name method to calculate data
+    public void calculateData(double d) {
         double[][][] data2 = new double[data.length][data[0].length][data[0][0].length];
         BufferedWriter outputToFile;
 
         // Write racing stats data into a file
         try {
-            outputToFile = new BufferedWriter(new FileWriter("RacingStatsData.txt"));
+            outputToFile = new BufferedWriter(new FileWriter("RacingStatsData.txt", true)); //add true argument because Without true argument It will overwrite the existing file
+
             for (int i = 0; i < data.length; i++) {
                 for (int j = 0; j < data[0].length; j++) {
                     for (int k = 0; k < data[0][0].length; k++) {
