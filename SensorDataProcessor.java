@@ -52,7 +52,7 @@ public class SensorDataProcessor {
                     outputToFile.write(data2[i][j] + "\t");
                 }
             }
-            out.close();
+            outputToFile.close();
         } catch (Exception e) {
             System.out.println("Error= " + e);
         }
